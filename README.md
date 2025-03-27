@@ -1,7 +1,7 @@
 # React Simpler Modal (RSM)
 
 <p align="center">
-  <img src="./public/logo.png" alt="React Simpler Modal Logo" width="200"/>
+  <img src="https://github.com/nenorrell/react-simpler-modal/blob/main/public/logo.png?raw=true" alt="React Simpler Modal Logo" width="200"/>
 </p>
 
 **React Simpler Modal (RSM)** is a lightweight, hook-based modal management library for React. It leverages React Context and custom hooks to offer an intuitive, type-safe API for handling multiple modals—making it easy to show, hide, update, and persist modal state across your app.

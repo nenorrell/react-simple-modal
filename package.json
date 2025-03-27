@@ -1,7 +1,7 @@
 {
   "name": "react-simpler-modal",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "a lightweight, hook-based modal management library for React. It leverages React Context and custom hooks to offer an intuitive, type-safe API for handling multiple modals—making it easy to show, hide, update, and persist modal state across your app.",
   "keywords": [
