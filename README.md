@@ -1,54 +1,143 @@
-# React + TypeScript + Vite
+# React Simple Modal (RSM)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="./public/logo.png" alt="React Simple Modal Logo" width="200"/>
+</p>
 
-Currently, two official plugins are available:
+**React Simple Modal (RSM)** is a lightweight, hook-based modal management library for React. It leverages React Context and custom hooks to offer an intuitive, type-safe API for handling multiple modals—making it easy to show, hide, update, and persist modal state across your app.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📚 Table of Contents
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Features](#-features)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+  - [1. Define Your Modals](#1-define-your-modals)
+  - [2. Wrap Your App with the Provider](#2-wrap-your-app-with-the-provider)
+  - [3. Use the Hook to Control Modals](#3-use-the-hook-to-control-modals)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## ✨ Features
+
+- **Hook-Based API** – Manage modal visibility and data using intuitive custom hooks.
+- **Flexible State Handling** – Merge modal data, persist content after close, or update modal state without toggling visibility.
+- **Type-Safe** – Written in TypeScript with full type safety for both modal data and state.
+- **Modern Build Outputs** – Supports both ESM and CommonJS for seamless integration.
+
+---
+
+## 📦 Installation
+
+Using npm:
+
+```bash
+npm install react-simple-modal
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Using yarn:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+yarn add react-simple-modal
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🚀 Quick Start
+
+1. Define Your Modals
+Create a typed configuration for your modal registry:
+
+```typescript
+// modal.config.ts
+import { simpleModalFactory } from 'react-simple-modal';
+
+export type DemoModals = {
+  modal1: { title: string; content: string };
+  modal2: { message: string };
+};
+
+export const { ModalProvider: DemoModalProvider, useModal: useDemoModal } =
+  simpleModalFactory<DemoModals>({
+    modal1: { isShowing: false, data: undefined },
+    modal2: { isShowing: false, data: undefined },
+  });
+
+```
+
+2. Wrap Your App/component with the Provider
+
+```typescript
+// main.tsx
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { DemoModalProvider } from './modal.config';
+import App from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <DemoModalProvider>
+      <App />
+    </DemoModalProvider>
+  </StrictMode>
+);
+```
+
+3. Use the Hook to Control Modals
+
+```tsx
+// App.tsx
+import { useDemoModal } from './modal.config';
+
+function App() {
+  const modal = useDemoModal();
+
+  return (
+    <div
+      className="flex gap"
+      style={{
+        width: '100vw',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {modal.isModalOpen('modal1') && (
+        <dialog open>
+          <h2>{modal.getModalData('modal1')?.title}</h2>
+          <p>{modal.getModalData('modal1')?.content}</p>
+          <button
+            onClick={() =>
+              modal.showModal('modal1', {
+                title: 'Updated Modal 1',
+                content: 'This is the updated content for modal 1',
+              })
+            }
+          >
+            Update
+          </button>
+        </dialog>
+      )}
+
+      {modal.isModalOpen('modal2') && (
+        <dialog open>
+          <p>{modal.getModalData('modal2')?.message}</p>
+          <button onClick={() => modal.hideModal('modal2')}>Close</button>
+        </dialog>
+      )}
+
+      <button
+        onClick={() =>
+          modal.showModal('modal1', { title: 'Modal 1', content: 'This is modal 1' })
+        }
+      >
+        Show Modal 1
+      </button>
+
+      <button onClick={() => modal.showModal('modal2', { message: 'This is modal 2' })}>
+        Show Modal 2
+      </button>
+    </div>
+  );
+}
+
+export default App;
 ```
