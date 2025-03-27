@@ -1,4 +1,4 @@
-import { simpleModalFactory } from '../lib/simple-modal';
+import { simplerModalFactory } from '../lib/simpler-modal';
 
 export type DemoModals = {
   modal1: { title: string; content: string };
@@ -6,7 +6,7 @@ export type DemoModals = {
 };
 
 export const { ModalProvider: DemoModalProvider, useModal: useDemoModal } =
-  simpleModalFactory<DemoModals>({
+  simplerModalFactory<DemoModals>({
     modal1: { isShowing: false, data: undefined },
     modal2: { isShowing: false, data: undefined },
   });

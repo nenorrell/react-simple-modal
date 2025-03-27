@@ -1,2 +1,2 @@
-export * from "./lib/simple-modal";
+export * from "./lib/simpler-modal";
 export * from "./lib/@types";

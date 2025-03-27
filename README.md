@@ -1,10 +1,10 @@
-# React Simple Modal (RSM)
+# React Simpler Modal (RSM)
 
 <p align="center">
-  <img src="./public/logo.png" alt="React Simple Modal Logo" width="200"/>
+  <img src="./public/logo.png" alt="React Simpler Modal Logo" width="200"/>
 </p>
 
-**React Simple Modal (RSM)** is a lightweight, hook-based modal management library for React. It leverages React Context and custom hooks to offer an intuitive, type-safe API for handling multiple modals—making it easy to show, hide, update, and persist modal state across your app.
+**React Simpler Modal (RSM)** is a lightweight, hook-based modal management library for React. It leverages React Context and custom hooks to offer an intuitive, type-safe API for handling multiple modals—making it easy to show, hide, update, and persist modal state across your app.
 
 ---
 
@@ -33,13 +33,13 @@
 Using npm:
 
 ```bash
-npm install react-simple-modal
+npm install react-simpler-modal
 ```
 
 Using yarn:
 
 ```bash
-yarn add react-simple-modal
+yarn add react-simpler-modal
 ```
 
 ## 🚀 Quick Start
@@ -49,7 +49,7 @@ Create a typed configuration for your modal registry:
 
 ```typescript
 // modal.config.ts
-import { simpleModalFactory } from 'react-simple-modal';
+import { simplerModalFactory } from 'react-simpler-modal';
 
 export type DemoModals = {
   modal1: { title: string; content: string };
@@ -57,7 +57,7 @@ export type DemoModals = {
 };
 
 export const { ModalProvider: DemoModalProvider, useModal: useDemoModal } =
-  simpleModalFactory<DemoModals>({
+  simplerModalFactory<DemoModals>({
     modal1: { isShowing: false, data: undefined },
     modal2: { isShowing: false, data: undefined },
   });

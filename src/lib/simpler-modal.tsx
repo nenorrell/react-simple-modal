@@ -78,7 +78,7 @@ const modalReducer = <M extends Record<string, any>>(
  *  - ModalProvider: The context provider component.
  *  - useModal: A hook to access modal actions and state.
  */
-export function simpleModalFactory<M extends Record<string, any>>(initialState: ModalState<M>) {
+export function simplerModalFactory<M extends Record<string, any>>(initialState: ModalState<M>) {
   const ModalContext = createContext<{
     state: ModalState<M>;
     dispatch: React.Dispatch<ModalAction<M>>;
