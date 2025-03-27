@@ -1,13 +1,33 @@
 {
   "name": "react-simple-modal",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
+  "description": "a lightweight, hook-based modal management library for React. It leverages React Context and custom hooks to offer an intuitive, type-safe API for handling multiple modals—making it easy to show, hide, update, and persist modal state across your app.",
+  "keywords": [
+    "react",
+    "modal",
+    "hook",
+    "context",
+    "state management",
+    "lightweight",
+    "type-safe",
+    "custom hooks",
+    "multiple modals"
+  ],
+  "author": "royalewcheese",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsup src/index.tsx --dts --format esm,cjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=16.8 <20.0",

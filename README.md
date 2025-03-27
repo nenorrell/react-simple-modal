@@ -92,14 +92,7 @@ function App() {
   const modal = useDemoModal();
 
   return (
-    <div
-      className="flex gap"
-      style={{
-        width: '100vw',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div>
       {modal.isModalOpen('modal1') && (
         <dialog open>
           <h2>{modal.getModalData('modal1')?.title}</h2>

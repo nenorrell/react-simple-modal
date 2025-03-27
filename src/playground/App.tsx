@@ -5,7 +5,6 @@ function App() {
   const simpleModal = useDemoModal();
 
   return (
-    // Demo of how to use the modal context
     <div
       className="flex gap"
       style={{
@@ -38,13 +37,6 @@ function App() {
         </dialog>
       )}
 
-      {simpleModal.isModalOpen('modal3') && (
-        <dialog open>
-          <p>{simpleModal.getModalData('modal3')?.info}</p>
-          <button onClick={() => simpleModal.hideModal('modal3')}>Close</button>
-        </dialog>
-      )}
-
       <button
         onClick={() =>
           simpleModal.showModal('modal1', { title: 'Modal 1', content: 'This is modal 1' })
@@ -55,10 +47,6 @@ function App() {
 
       <button onClick={() => simpleModal.showModal('modal2', { message: 'This is modal 2' })}>
         Show Modal 2
-      </button>
-
-      <button onClick={() => simpleModal.showModal('modal3', { info: 'This is modal 3' })}>
-        Show Modal 3
       </button>
     </div>
   );
