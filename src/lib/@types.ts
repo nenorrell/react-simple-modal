@@ -55,7 +55,7 @@ export type ModalAction<M extends Record<string, any>> =
   | {
       type: 'SHOW_MODAL';
       modalType: keyof M;
-      data: M[keyof M];
+      data?: M[keyof M];
       options?: MergeOptions;
     }
   | {
@@ -66,7 +66,7 @@ export type ModalAction<M extends Record<string, any>> =
   | {
       type: 'TOGGLE_MODAL';
       modalType: keyof M;
-      data: M[keyof M];
+      data?: M[keyof M];
       options?: MergeOptions;
     }
   | {

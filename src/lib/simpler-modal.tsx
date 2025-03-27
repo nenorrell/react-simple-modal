@@ -116,7 +116,7 @@ export function simplerModalFactory<M extends Record<string, any>>(initialState:
      * @param data - The data to associate with the modal.
      * @param options - Options for showing the modal. (See MergeOptions)
      */
-    const showModal = <K extends keyof M>(modalType: K, data: M[K], options?: MergeOptions) => {
+    const showModal = <K extends keyof M>(modalType: K, data?: M[K], options?: MergeOptions) => {
       dispatch({ type: 'SHOW_MODAL', modalType, data, options });
     };
 
